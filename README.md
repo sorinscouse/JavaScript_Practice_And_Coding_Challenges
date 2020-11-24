@@ -1,2 +1,2 @@
-# JavaScript_Practice_And_Coding_Challenges
-Practicing JavaScript and Solving Various Coding Challenges
+# Practicing JavaScript and Solving Various Coding Challenges
+
