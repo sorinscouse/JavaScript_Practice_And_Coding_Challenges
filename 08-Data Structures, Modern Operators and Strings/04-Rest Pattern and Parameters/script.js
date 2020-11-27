@@ -75,4 +75,4 @@ restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
 /*The SPREAD and REST syntax look exactly the same, but they work in opposite ways, depending of where they are used.
 * The SPREAD operator is used where we would otherwise write values separated by a coma(,)
-* The REST operator is used where we would write variable names separated by comas(,)*/
+* The REST pattern is used where we would write variable names separated by comas(,)*/
