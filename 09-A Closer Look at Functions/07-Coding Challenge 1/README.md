@@ -2,6 +2,13 @@ Let's build a simple poll app!
 
 A poll has a question, an array of options from which people can choose, and an array with the number of replies for each option. This data is stored in the starter object below.
 
+const poll = {
+    question: 'What is your favourite programming language?',
+    options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+    // This generates [0, 0, 0, 0]. More in the next section 😃
+    answers: new Array(4).fill(0),
+}
+
 Here are your tasks:
 
 1. Create a method called 'registerNewAnswer' on the 'poll' object. The method does 2 things:
