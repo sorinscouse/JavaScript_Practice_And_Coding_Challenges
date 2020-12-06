@@ -57,13 +57,6 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-
-const currencies = new Map([
-    ['USD', 'United States dollar'],
-    ['EUR', 'Euro'],
-    ['GBP', 'Pound sterling'],
-]);
-
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) {
@@ -99,6 +92,32 @@ movements.forEach(function (mov, i, arr) {
         console.log(`Movement ${i + 1}: You withdrew ${(Math.abs(mov))}`);
     }
 });
+
+
+//Map
+const currencies = new Map([
+    ['USD', 'United States dollar'],
+    ['EUR', 'Euro'],
+    ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+    console.log(`${key}: ${value}`);
+});
+
+//Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+
+currenciesUnique.forEach(function (value, key, map) {
+    console.log(`${key}: ${value}`);
+});
+//It also works like this:
+currenciesUnique.forEach(function (value, _, map) {
+    console.log(`${value}: ${value}`);
+});
+
+
 
 
 
