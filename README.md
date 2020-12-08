@@ -1,2 +1,2 @@
-# Practicing JavaScript and solving various coding challenges
+# JavaScript practice and Coding Challenges
 
