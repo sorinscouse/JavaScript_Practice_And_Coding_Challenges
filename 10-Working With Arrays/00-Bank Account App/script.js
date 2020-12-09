@@ -76,41 +76,37 @@ const displayMovements = function (movements) {
     })
 };
 
-displayMovements(account1.movements);
-// console.log(containerMovements.innerHTML);
 
 const calcDisplayBalance = function (movements) {
     const balance = movements.reduce((acc, mov) => acc + mov, 0);
     labelBalance.textContent = `${balance}£`
 };
-calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
+const calcDisplaySummary = function (acc) {
     //Display all the incomes
-    const incomes = movements
+    const incomes = acc.movements
         .filter(mov => mov > 0)
         .reduce((acc, mov) => acc + mov, 0);
     labelSumIn.textContent = `${incomes}£`; //Display incomes
 
     //Display all the outcomes
-    const out = movements
+    const out = acc.movements
         .filter(mov => mov < 0)
         .reduce((acc, mov) => acc + mov, 0);
     labelSumOut.textContent = `${Math.abs(out)}£`; //Display outcomes
 
     //Calculate interest
-    const interest = movements
+    const interest = acc.movements
         .filter(mov => mov > 0) //[200, 450, 3000, 70, 1300]
-        .map(deposit => deposit * 1.2 / 100) //[2.4, 5.4, 36, 0.84, 15.6]
+        .map(deposit => deposit * acc.interestRate / 100) //[2.4, 5.4, 36, 0.84, 15.6]
         .filter((int, i, arr) => {
-            console.log(arr); //(5) [2.4, 5.4, 36, 0.84, 15.6]
+            // console.log(arr); //(5) [2.4, 5.4, 36, 0.84, 15.6]
             return int >= 1; //returns only the numbers >=1, so, in this case, 0.84 will not be returned
         })
         .reduce((acc, int) => acc + int, 0); //59.4 (2.4 + 5.4 + 36 + 15.6)
     labelSumInterest.textContent = `${interest}£`; //Display interest
 
 };
-calcDisplaySummary(account1.movements);
 
 
 
@@ -128,6 +124,43 @@ const createUsernames = function (accs) {
     });
 };
 createUsernames(accounts);
+
+
+
+// Event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+    //Prevent form from submitting
+    e.preventDefault();
+    // console.log('LOGIN');
+
+    currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+    console.log(currentAccount);
+
+    if (currentAccount?.pin === Number(inputLoginPin.value)) {
+        // console.log('LOGIN');
+
+        // Display UI and message
+        labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`; //only the first letters from owner account: for Jonas Schmedtmann --> 'js', so when we login in, we put 'js' in the username field, and 1111 in the pin field. The same applies for the other users.
+        containerApp.style.opacity = 100;
+
+        //Clear input fields, after the user is logged in
+        inputLoginUsername.value = inputLoginPin.value = '';
+        //And for the field to lose its focus
+        inputLoginPin.blur();
+
+        //Display movements
+        displayMovements(currentAccount.movements);
+
+        //Display balance
+        calcDisplayBalance(currentAccount.movements);
+
+        //Display summary
+        calcDisplaySummary(currentAccount);
+
+    }
+});
 
 
 
