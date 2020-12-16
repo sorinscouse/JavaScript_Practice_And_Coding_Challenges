@@ -34,4 +34,3 @@ jessica.greet();
 // 1. Classes are NOT hoisted.
 // 2. Classes are 'first-class citizens' (we can pass them into functions and also return them from functions).
 // 3. Classes are executed in strict mode.
-
