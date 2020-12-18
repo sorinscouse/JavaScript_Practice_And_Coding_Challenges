@@ -10,7 +10,7 @@ Person.prototype.calcAge = function () {
 };
 
 const Student = function (firstName, birthYear, course) {
-    Person.call(this, firstName, birthYear)
+    Person.call(this, firstName, birthYear);
     this.course = course;
 };
 
